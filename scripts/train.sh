@@ -1,0 +1,20 @@
+accelerate launch --num_processes=2 train.py \
+    --path_prompt_train './data/40k_mapping.json'\
+    --pretrained_sb_generator "./sb_v2_ckpt/0.5"\
+    --pretrained_model_name_or_path "stabilityai/sd-turbo" \
+    --use_ema \
+    --resolution 512 \
+    --validation_steps 500 \
+    --train_batch_size 10 \
+    --gradient_accumulation_steps 1 --gradient_checkpointing \
+	--set_grads_to_none \
+    --guidance_scale 4.5 \
+    --learning_rate 1.e-05 \
+    --lr_scheduler cosine \
+	--adam_weight_decay 1.e-04 \
+	--lr_warmup_steps 0 \
+    --num_train_epochs 20\
+    --checkpointing_steps 2000 \
+	--output_dir "./output/" \
+    --data_option "None" \
+    --task "None"
